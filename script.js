@@ -1,6 +1,7 @@
 const loginForm = document.getElementById("login");
 const courseIDDiv = document.getElementById("courseIDDiv");
 const answerSheet = document.getElementById("answerSheet");
+let i = 1;
 
 let _token = "";
 loginForm.addEventListener("submit", function (e) {
@@ -63,22 +64,20 @@ function clearAnswer() {
 function captureAnswer() {}
 
 function renderAnswer(e) {
-  let i = 1;
   const detail = `
   <div class="box">
     <div class="qna">
-      <p class="question"> <strong>${i++}. </strong>${e["questionText"]}</p>
+      <p class="question"> <strong>${i}. </strong>${e["questionText"]}</p>
       <p class="selection"><strong>A.</strong> ${e["a"]}</p>
       <p class="selection"><strong>B.</strong> ${e["b"]}</p>
       <p class="selection"><strong>C.</strong> ${e["c"]}</p>
       <p class="selection"><strong>D.</strong> ${e["d"]}</p>
-      <p class="answer"> Đáp án: <strong style="color: red">${
-        e["key"]
-      }</strong></p>
+      <p class="answer"> Đáp án: <strong style="color: red">${e["key"]}</strong></p>
     </div>
       
       <div class="solution">${e["answer"]}</div>
   </div>    
   `;
   answerSheet.innerHTML += detail;
+  i++;
 }
