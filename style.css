@@ -4,7 +4,7 @@
 .isHidden {
   display: none;
 }
-.answerSheet {
+#answerSheet {
   width: 50%;
 }
 .box {
