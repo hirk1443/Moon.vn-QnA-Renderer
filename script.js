@@ -34,10 +34,38 @@ loginForm.addEventListener("submit", function (e) {
 const courseIDform = document.getElementById("courseIDForm");
 
 courseIDform.addEventListener("submit", function (e) {
-  console.log(_token);
+  i = 1;
   e.preventDefault();
   const courseID = document.getElementById("courseID");
-  fetch(`https://courseapi.moon.vn/api/Course/Testing/${courseID.value}/1`, {
+  fetch(
+    `https://courseapi.moon.vn/api/Course/TestingEnglish/${courseID.value}/4`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${_token}`,
+        referer: "https://beta.moon.vn/",
+      },
+    }
+  ).then(function (res) {
+    if (res.status != 200) {
+      alert("Không hợp lệ");
+    } else
+      res.json().then(function (data) {
+        clearAnswer();
+        data.forEach((e) => {
+          e["testingList"].forEach((e) => {
+            renderAnswer(e);
+          });
+        });
+      });
+  });
+});
+
+courseIDform.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const courseID = document.getElementById("courseID");
+  fetch(`https://courseapi.moon.vn/api/Course/Testing/${courseID.value}/4`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

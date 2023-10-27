@@ -4,9 +4,10 @@
 .isHidden {
   display: none;
 }
-#answerSheet {
-  width: 50%;
-}
+/* #answerSheet {
+  min-width: 50%;
+  max-width: 75%;
+} */
 .box {
   border: 1px solid;
   margin: 10px 0;
