@@ -1,0 +1,18 @@
+* {
+  font-family: Arial, sans-serif;
+}
+.isHidden {
+  display: none;
+}
+.box {
+  width: 50%;
+  border: 1px solid;
+  margin: 10px 0;
+  padding: 10px;
+}
+.solution {
+  background-color: #fefcf2;
+  border: 1px solid;
+  padding: 5px;
+  line-height: 1.6;
+}
