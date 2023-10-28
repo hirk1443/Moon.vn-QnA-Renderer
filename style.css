@@ -1,5 +1,6 @@
 * {
   font-family: Arial, sans-serif;
+  line-height: 1.6;
 }
 .isHidden {
   display: none;
@@ -17,5 +18,4 @@
   background-color: #fefcf2;
   border: 1px solid;
   padding: 5px;
-  line-height: 1.6;
 }

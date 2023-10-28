@@ -1,9 +1,18 @@
 const loginForm = document.getElementById("login");
 const courseIDDiv = document.getElementById("courseIDDiv");
 const answerSheet = document.getElementById("answerSheet");
-let i = 1;
 
+let i = 1;
 let _token = "";
+let isLogin = false;
+
+document.addEventListener("keydown", (e) => {
+  if (e.code === "Home" && isLogin) {
+    clearAnswer();
+    courseIDDiv.classList.remove("isHidden");
+  }
+});
+
 loginForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const username = document.getElementById("username").value;
@@ -26,6 +35,7 @@ loginForm.addEventListener("submit", function (e) {
       courseIDDiv.classList.remove("isHidden");
       res.json().then(function (e) {
         _token = e["token"];
+        isLogin = true;
       });
     }
   });
@@ -57,7 +67,9 @@ courseIDform.addEventListener("submit", function (e) {
           e["testingList"].forEach((e) => {
             renderAnswer(e);
           });
+          renderListening(e);
         });
+        courseIDDiv.classList.add("isHidden");
       });
   });
 });
@@ -81,6 +93,7 @@ courseIDform.addEventListener("submit", function (e) {
         data.forEach((e) => {
           renderAnswer(e);
         });
+        courseIDDiv.classList.add("isHidden");
       });
   });
 });
@@ -102,10 +115,19 @@ function renderAnswer(e) {
       <p class="selection"><strong>D.</strong> ${e["d"]}</p>
       <p class="answer"> Đáp án: <strong style="color: red">${e["key"]}</strong></p>
     </div>
-      
       <div class="solution">${e["answer"]}</div>
   </div>    
   `;
   answerSheet.innerHTML += detail;
   i++;
+}
+
+function renderListening(e) {
+  const detail = `
+  <div class="box">
+      <div class="solution">${e["answer"]}</div>
+  </div>    
+  `;
+
+  answerSheet.innerHTML += detail;
 }
