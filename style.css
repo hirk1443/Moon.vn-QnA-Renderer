@@ -5,10 +5,7 @@
 .isHidden {
   display: none;
 }
-/* #answerSheet {
-  min-width: 50%;
-  max-width: 75%;
-} */
+
 .box {
   border: 1px solid;
   margin: 10px 0;
@@ -18,4 +15,18 @@
   background-color: #fefcf2;
   border: 1px solid;
   padding: 5px;
+}
+#login {
+  border: 1px solid;
+  padding: 10px;
+  text-align: center;
+  width: 25%;
+  margin: auto;
+}
+#courseIDDiv {
+  border: 1px solid;
+  padding: 10px;
+  text-align: center;
+  width: 25%;
+  margin: auto;
 }
