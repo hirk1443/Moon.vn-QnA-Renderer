@@ -64,10 +64,10 @@ courseIDform.addEventListener("submit", function (e) {
       res.json().then(function (data) {
         clearAnswer();
         data.forEach((e) => {
+          renderListening(e);
           e["testingList"].forEach((e) => {
             renderAnswer(e);
           });
-          renderListening(e);
         });
         courseIDDiv.classList.add("isHidden");
       });
