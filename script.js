@@ -42,11 +42,12 @@ loginForm.addEventListener("submit", function (e) {
 });
 
 const courseIDform = document.getElementById("courseIDForm");
+const courseID = document.getElementById("courseID");
 
 courseIDform.addEventListener("submit", function (e) {
   i = 1;
   e.preventDefault();
-  const courseID = document.getElementById("courseID");
+
   fetch(
     `https://courseapi.moon.vn/api/Course/TestingEnglish/${courseID.value}/4`,
     {
@@ -72,12 +73,16 @@ courseIDform.addEventListener("submit", function (e) {
         courseIDDiv.classList.add("isHidden");
       });
   });
+  getData(`https://courseapi.moon.vn/api/Course/Testing/${courseID.value}/1`);
 });
 
-courseIDform.addEventListener("submit", function (e) {
-  e.preventDefault();
-  const courseID = document.getElementById("courseID");
-  fetch(`https://courseapi.moon.vn/api/Course/Testing/${courseID.value}/4`, {
+function clearAnswer() {
+  answerSheet.innerHTML = "";
+}
+
+function getData(url) {
+  let data = "";
+  fetch(url, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -90,19 +95,24 @@ courseIDform.addEventListener("submit", function (e) {
     } else
       res.json().then(function (data) {
         clearAnswer();
+
         data.forEach((e) => {
           renderAnswer(e);
         });
         courseIDDiv.classList.add("isHidden");
       });
   });
-});
-
-function clearAnswer() {
-  answerSheet.innerHTML = "";
 }
 
-function captureAnswer() {}
+function renderListening(e) {
+  const detail = `
+  <div class="box">
+      <div class="solution">${e["answer"]}</div>
+  </div>    
+  `;
+
+  answerSheet.innerHTML += detail;
+}
 
 function renderAnswer(e) {
   const detail = `
@@ -120,14 +130,4 @@ function renderAnswer(e) {
   `;
   answerSheet.innerHTML += detail;
   i++;
-}
-
-function renderListening(e) {
-  const detail = `
-  <div class="box">
-      <div class="solution">${e["answer"]}</div>
-  </div>    
-  `;
-
-  answerSheet.innerHTML += detail;
 }
