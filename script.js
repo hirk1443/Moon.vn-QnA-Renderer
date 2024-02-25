@@ -64,8 +64,9 @@ courseIDform.addEventListener("submit", function (e) {
     } else
       res.json().then(function (data) {
         clearAnswer();
+        // renderWriting(e);
         data.forEach((e) => {
-          renderListening(e);
+          renderListening_Writing(e);
           e["testingList"].forEach((e) => {
             renderAnswer(e);
           });
@@ -94,7 +95,7 @@ function getData(url) {
       alert("Không hợp lệ");
     } else
       res.json().then(function (data) {
-        clearAnswer();
+        // clearAnswer();
 
         data.forEach((e) => {
           renderAnswer(e);
@@ -104,10 +105,23 @@ function getData(url) {
   });
 }
 
-function renderListening(e) {
+function renderWriting(e) {
   const detail = `
   <div class="box">
-      <div class="solution">${e["answer"]}</div>
+      
+  </div>    
+  `;
+
+  answerSheet.innerHTML += detail;
+}
+
+function renderListening_Writing(e) {
+  const detail = `
+  <div class="box">
+    <div class="solution">${e["content"]}</div>
+  </div>    
+  <div class="box">
+     <div class="solution">${e["answer"]}</div>   
   </div>    
   `;
 
