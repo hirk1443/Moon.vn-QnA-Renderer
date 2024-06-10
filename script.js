@@ -75,6 +75,32 @@ courseIDform.addEventListener("submit", function (e) {
       });
   });
   getData(`https://courseapi.moon.vn/api/Course/Testing/${courseID.value}/1`);
+  fetch(
+    `https://courseapi.moon.vn/api/Course/TestingEnglish/${courseID.value}/1`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${_token}`,
+        referer: "https://beta.moon.vn/",
+      },
+    }
+  ).then(function (res) {
+    if (res.status != 200) {
+      alert("Không hợp lệ");
+    } else
+      res.json().then(function (data) {
+        clearAnswer();
+        // renderWriting(e);
+        data.forEach((e) => {
+          renderListening_Writing(e);
+          e["testingList"].forEach((e) => {
+            renderAnswer(e);
+          });
+        });
+        courseIDDiv.classList.add("isHidden");
+      });
+  });
 });
 
 function clearAnswer() {
