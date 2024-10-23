@@ -17,17 +17,22 @@ loginForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
-  fetch("https://identity.moon.vn/api/user/login", {
-    method: "POST",
-    body: JSON.stringify({
-      username: username,
-      password: password,
-      rememberMe: true,
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then(function (res) {
+  fetch(
+    "https://cors-anywhere.herokuapp.com/https://identity.moon.vn/api/user/login",
+    {
+      method: "POST",
+      body: JSON.stringify({
+        username: username,
+        password: password,
+        rememberMe: true,
+      }),
+      headers: {
+        Accept: "*/*",
+        "Allow-access-control-origin": "*",
+        "Content-Type": "application/json",
+      },
+    }
+  ).then(function (res) {
     if (res.status != 200) {
       alert("Tên đăng nhập hoặc mật khẩu không chính xác");
     } else {
@@ -51,6 +56,7 @@ courseIDform.addEventListener("submit", function (e) {
   fetch(
     `https://courseapi.moon.vn/api/Course/TestingEnglish/${courseID.value}/4`,
     {
+      mode: "no-cors",
       method: "GET",
       headers: {
         "Content-Type": "application/json",
