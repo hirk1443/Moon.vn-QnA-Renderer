@@ -18,7 +18,7 @@ loginForm.addEventListener("submit", function (e) {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
   fetch(
-    "https://cors-anywhere.herokuapp.com/https://identity.moon.vn/api/user/login",
+    "https://web-production-f0f0.up.railway.app/https://identity.moon.vn/api/user/login",
     {
       method: "POST",
       body: JSON.stringify({
@@ -28,7 +28,6 @@ loginForm.addEventListener("submit", function (e) {
       }),
       headers: {
         Accept: "*/*",
-        "Allow-access-control-origin": "*",
         "Content-Type": "application/json",
       },
     }
